@@ -23,7 +23,7 @@ int printdir(char *s) {
 	while (p) {
 		if (p->d_type == 8) {
 			stat(p->d_name,stp);
-			printf("%ho %*u %s\n",0/*stp->st_mode % 01000*/,0/*stp->st_size*/,p->d_name);
+			printf("%ho %u %s\n",0,0,p->d_name);
 			//total_size += stp->st_size;
 		}
 		p = readdir(dirp);
