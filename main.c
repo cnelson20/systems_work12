@@ -23,7 +23,7 @@ int printdir(char *s, int tabs) {
 			stat(p->d_name,stp);
 			char *t = ctime(&stp->st_mtime);
 			*(strchr(t,'\n')) = '\0';
-			printf("%ho %d %s\t%s\n",stp->st_mode % 01000,stp->st_size,t,p->d_name);
+			printf("%ho %ld %s\t%s\n",stp->st_mode % 01000,stp->st_size,t,p->d_name);
 			total_size += stp->st_size;
 		}
 		p = readdir(dirp);
@@ -36,7 +36,7 @@ int printdir(char *s, int tabs) {
 		if (p->d_type == 4) {
 			stat(p->d_name,stp);
 			char *t = ctime(&stp->st_mtime);
-			printf("%hho %d %s %s\n",stp->st_mode,stp->st_size,ctime(&stp->st_mtime),p->d_name);
+			printf("%hho %ld %s %s\n",stp->st_mode,stp->st_size,ctime(&stp->st_mtime),p->d_name);
 			total_size += stp->st_size;
 		}
 		p = readdir(dirp);
