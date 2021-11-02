@@ -16,7 +16,7 @@ int printdir(char *s, int tabs) {
 	DIR *dirp = opendir(s);
 	struct dirent *p = readdir(dirp);
 	struct stat *stp;
-	int total_size = 0;
+	unsigned int total_size = 0;
 	printf("\nFiles:\n\n");
 	while (p) {
 		if (p->d_type == 8) {
@@ -36,12 +36,12 @@ int printdir(char *s, int tabs) {
 		if (p->d_type == 4) {
 			stat(p->d_name,stp);
 			char *t = ctime(&stp->st_mtime);
-			printf("%hho %ld %s %s\n",stp->st_mode,stp->st_size,ctime(&stp->st_mtime),p->d_name);
+			printf("%hho %ld %s %s\n",stp->st_mode,stp->st_size,t,p->d_name);
 			total_size += stp->st_size;
 		}
 		p = readdir(dirp);
 	}
 	closedir(dirp);
-	printf("\nTotal Size: %d\n",total_size);
+	printf("\nTotal Size: %u\n",total_size);
 	return 0;
 }
