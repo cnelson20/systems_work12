@@ -19,9 +19,11 @@ int main(int argc, char *argv[]) {
     if (i) {
       printf("%s: %s\n",dir,strerror(errno));
     }
-    printf("Please enter a directory name:\n");
-    fgets(dir,256,stdin);
-    *(strrchr(dir,'\n')) = '\0';
+    printf("Please enter a directory name: ");
+    fgets(dir,255,stdin);
+    dir[255] = '\0';
+    char *newline = strrchr(dir,'\n');
+    if (newline != NULL) {*newline = '\0';}
     i = 1;
   }
   return 0;
