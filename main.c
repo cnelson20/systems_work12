@@ -20,7 +20,7 @@ int printdir(char *s) {
 	while (p) {
 		if (p->d_type == 4) {
 		stat(p->d_name,&stp);
-		printf("%hho %s\n",stp.st_mode % 01000,p->d_name);
+		printf("%ho %s\n",stp.st_mode % 01000,p->d_name);
 		total_size += stp.st_size;
 		}
 		p = readdir(dirp);
